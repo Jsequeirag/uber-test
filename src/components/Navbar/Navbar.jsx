@@ -34,7 +34,7 @@ const Navbar = () => {
         <img
           width="80"
           height="70"
-          src="fresh-market.png "
+          src="superxtra.jpeg"
           alt=""
           decoding="async"
           loading="lazy"
