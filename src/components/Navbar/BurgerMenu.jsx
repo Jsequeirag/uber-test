@@ -100,7 +100,7 @@ const BurguerMenu = () => {
                         <span>Parametros</span>
                       </a>
                     </li>
-                    <li className="relative hidden">
+                    <li className="relative ">
                       <a
                         href="/branches"
                         className="flex h-12 cursor-pointer items-center truncate rounded-[5px] mt-2 px-6 py-4 text-[0.875rem] text-white outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:outline-none focus:bg-slate-50 focus:outline-none active:bg-slate-50  active:outline-none  motion-reduce:transition-none dark:text-white dark:hover:bg-black dark:focus:bg-gray-900 dark:active:bg-gray-800 bg-gray-600"
@@ -122,14 +122,25 @@ const BurguerMenu = () => {
                         <span>Reenvío orden</span>
                       </a>
                     </li>
-                    <li
+                    {/*<li
                       className="relative"
-                      hidden={
+                     {/*} hidden={
                         localStorage.getItem("storeUser") === "admin"
                           ? false
                           : true
-                      }
                     >
+                      <a
+                        href="/users"
+                        className="flex h-12 cursor-pointer items-center truncate rounded-[5px] mt-2 px-6 py-4 text-[0.875rem] text-white outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:outline-none focus:bg-slate-50 focus:outline-none active:bg-slate-50  active:outline-none  motion-reduce:transition-none dark:text-white dark:hover:bg-black dark:focus:bg-gray-900 dark:active:bg-gray-800 bg-gray-600"
+                      >
+                        <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
+                          <i className="fa-solid fa-users-gear"></i>
+                        </span>
+                        <span>Usuarios</span>
+                      </a>
+                    </li>*/}
+
+                    <li className="relative">
                       <a
                         href="/users"
                         className="flex h-12 cursor-pointer items-center truncate rounded-[5px] mt-2 px-6 py-4 text-[0.875rem] text-white outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:outline-none focus:bg-slate-50 focus:outline-none active:bg-slate-50  active:outline-none  motion-reduce:transition-none dark:text-white dark:hover:bg-black dark:focus:bg-gray-900 dark:active:bg-gray-800 bg-gray-600"
