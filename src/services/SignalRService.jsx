@@ -4,12 +4,15 @@ const hubConnection = new signalR.HubConnectionBuilder()
   .withUrl(
     "https://uberdirectwebsocket-bnfxbrcde0dzfzgc.canadacentral-01.azurewebsites.net/UberAstro",
     {
-      skipNegotiation: true,
-      transport: signalR.HttpTransportType.WebSockets,
+      // Remove skipNegotiation or set to false
+      // Allow both WebSockets and fallback to other transport methods
+      transport:
+        signalR.HttpTransportType.WebSockets |
+        signalR.HttpTransportType.LongPolling,
     }
   )
   .configureLogging(signalR.LogLevel.Information)
-  .withAutomaticReconnect()
+  .withAutomaticReconnect([0, 2000, 10000, 30000]) // Customize reconnect timing if needed
   .build();
 
 const startConnection = async () => {
