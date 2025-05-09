@@ -1,10 +1,13 @@
 import * as signalR from "@microsoft/signalr";
 
 const hubConnection = new signalR.HubConnectionBuilder()
-  .withUrl("https://ampm-orbitas-be.azurewebsites.net/UberAstro", {
-    skipNegotiation: true,
-    transport: signalR.HttpTransportType.WebSockets,
-  })
+  .withUrl(
+    "https://uberdirectwebsocket-bnfxbrcde0dzfzgc.canadacentral-01.azurewebsites.net/UberAstro",
+    {
+      skipNegotiation: true,
+      transport: signalR.HttpTransportType.WebSockets,
+    }
+  )
   .configureLogging(signalR.LogLevel.Information)
   .withAutomaticReconnect()
   .build();
