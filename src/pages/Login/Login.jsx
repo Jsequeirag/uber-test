@@ -39,6 +39,7 @@ const Login = () => {
             : res.data.userInfo.storeUser
         );
         localStorage.setItem("user", res.data.userInfo.user);
+        localStorage.setItem("accessToken", res.data.accessToken);
         window.location.reload();
         navigate("/home");
       })

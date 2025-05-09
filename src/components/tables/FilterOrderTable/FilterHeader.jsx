@@ -33,6 +33,7 @@ export default function FilterHeader() {
   //localStorage
   const storeUser = localStorage.getItem("storeUser");
   const [focusedButton, setFocusedButton] = useState(true);
+  const accessToken = localStorage.getItem("accessToken");
   const getOrderByDate = (startDate, endDate) => {
     axios
       .post(
@@ -40,6 +41,11 @@ export default function FilterHeader() {
         {
           startDate,
           endDate,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         }
       )
       .then((res) => {
@@ -57,7 +63,12 @@ export default function FilterHeader() {
   useEffect(() => {
     axios
       .get(
-        "https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetStore/"
+        "https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetStore/",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
       )
       .then((res) => {
         setBranches(orderByNumber(res.data));

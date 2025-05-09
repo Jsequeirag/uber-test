@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import Layout from "../Layout/Layout";
-import axios from "axios";
 import UsersTable from "../../components/tables/UsersTable/UsersTable";
 import UserForm from "../../components/forms/UserForms/UserForm";
 const Users = () => {

@@ -1,8 +1,15 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 const ParameterForm = () => {
+  //localStorage
+  const accessToken = localStorage.getItem("accessToken");
+
   useEffect(() => {
-    axios("http://localhost:3000/companyInformation").then((res) => {
+    axios("http://localhost:3000/companyInformation", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((res) => {
       setCompanyInformation(res.data);
     });
   }, []);

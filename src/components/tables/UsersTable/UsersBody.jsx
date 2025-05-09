@@ -6,6 +6,8 @@ import { NotifySuccess, NotifyError, NotifyInfo } from "../../Toasty/Notify";
 
 import MicroModal from "react-micro-modal";
 const UsersBody = () => {
+  //localStorage
+  const accessToken = localStorage.getItem("accessToken");
   //global
   const users = userStore((state) => state.users);
   const resetFormState = userStore((state) => state.resetFormState);
@@ -21,6 +23,11 @@ const UsersBody = () => {
         `https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/DeleteUser`,
         {
           UserId: idUser,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         }
       )
       .then((res) => {
@@ -38,7 +45,12 @@ const UsersBody = () => {
   useEffect(() => {
     axios
       .get(
-        "https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetAllUser"
+        "https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetAllUser",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
       )
       .then((res) => {
         userStore.getState().setUsers(res.data);

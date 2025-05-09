@@ -28,11 +28,17 @@ export default function DeliveriesHeader() {
     (state) => state.signalRErrorConnection
   );
   //localStorage
+  const accessToken = localStorage.getItem("accessToken");
   const storeUser = localStorage.getItem("storeUser");
   useEffect(() => {
     axios
       .get(
-        "https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetStore/"
+        "https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetStore/",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
       )
       .then((res) => {
         setBranches(orderByNumber(res.data));

@@ -8,8 +8,8 @@ export const OpenCloseMenu = () => {
       menu.classList.remove("hidden");
     };
     closeButton.onclick = function name(params) {
-      /* const menu = document.getElementById("sidebar");
-      menu.classList.add("hidden");*/
+      const menu = document.getElementById("sidebar");
+      menu.classList.add("hidden");
     };
   } catch (e) {
     console.log(e);

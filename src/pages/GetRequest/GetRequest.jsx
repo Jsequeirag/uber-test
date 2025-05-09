@@ -7,6 +7,8 @@ import {
   errorResponseModalHandle,
 } from "../../utils/http/functions";
 export default function GetRequest() {
+  //localStorage
+  const accessToken = localStorage.getItem("accessToken");
   //modal
   const [modalData, setModalData] = useState(false);
   const [formData, setformData] = useState({});
@@ -29,7 +31,12 @@ export default function GetRequest() {
     axios
       .post(
         `https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/OrderUpdates`,
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
       )
       .then(async (res) => {
         okResponseModalHandle({

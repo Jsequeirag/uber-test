@@ -3,19 +3,32 @@ import axios from "axios";
 import branchStore from "../../../stores/BranchStore";
 import { BranchDto } from "../../DTOs/branchDTO";
 const BranchesBody = () => {
+  //localStorage
+  const accessToken = localStorage.getItem("accessToken");
   //branchStore
   const branches = branchStore((state) => state.branches);
   //deleteBranch
   const deleteBranch = (idBranch) => {
-    axios.delete(`http://localhost:3000/branches/${idBranch}`).then((res) => {
-      branchStore.getState().deleteBranch(idBranch);
-    });
+    axios
+      .delete(`http://localhost:3000/branches/${idBranch}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        branchStore.getState().deleteBranch(idBranch);
+      });
   };
   //getBranchList
   useEffect(() => {
     axios
       .get(
-        `https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetStore`
+        `https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetStore`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
       )
       .then((res) => {
         const branchesDTOs = BranchDto(res.data);

@@ -4,9 +4,14 @@ import Layout from "../Layout/Layout";
 import ParameterForm from "../../components/forms/ParameterForms/ParameterForm";
 import parameterStore from "../../stores/ParameterStore";
 const Parameters = () => {
-  const parameters = parameterStore((state) => state.parameters);
+  const parameters = parameterStore((state) => state.parameters); //localStorage
+  const accessToken = localStorage.getItem("accessToken");
   useEffect(() => {
-    axios("http://localhost:3000/parameters").then((res) => {
+    axios("http://localhost:3000/parameters", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((res) => {
       console.log(res.data);
       parameterStore.getState().setParameters(res.data);
     });

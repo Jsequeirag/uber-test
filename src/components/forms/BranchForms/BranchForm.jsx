@@ -8,12 +8,18 @@ const BranchForm = () => {
   function formValuesHandle(e) {
     branchStore.getState().setFormState(e);
   }
+  //localStorage
+  const accessToken = localStorage.getItem("accessToken");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     formState.id
       ? await axios
-          .put(`http://localhost:3000/branches/${formState.id}`, formState)
+          .put(`http://localhost:3000/branches/${formState.id}`, formState, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
           .then((res) => {
             const userEdited = branches.map((branch) => {
               if (branch.id === formState.id) {
@@ -25,7 +31,11 @@ const BranchForm = () => {
             branchStore.getState().resetFormState();
           })
       : await axios
-          .post(`http://localhost:3000/branches/`, formState)
+          .post(`http://localhost:3000/branches/`, formState, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
           .then((res) => {
             branchStore.getState().addBranch(res.data);
             branchStore.getState().resetFormState();

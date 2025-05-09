@@ -17,6 +17,7 @@ const UserForm = () => {
   const branches = branchStore((state) => state.branches);
   const setBranches = branchStore((state) => state.setBranches);
   //local
+  const accessToken = localStorage.getItem("accessToken");
   const [action, setAction] = useState(false);
   const handleSubmit = async (e) => {
     setAction(true);
@@ -32,6 +33,11 @@ const UserForm = () => {
                 ? "alajuela la trinidad"
                 : formState?.storeId,
               PasswordHash: formState.passwordHash,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
             }
           )
           .then((res) => {
@@ -55,6 +61,11 @@ const UserForm = () => {
                 ? "alajuela la trinidad"
                 : formState.storeId,
               PasswordHash: formState.PasswordHash,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
             }
           )
           .then((res) => {
@@ -79,7 +90,12 @@ const UserForm = () => {
   useEffect(() => {
     axios
       .get(
-        "https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetStore/"
+        "https://uberdirectwebhookapi-cyhqhnfygqaggae5.canadacentral-01.azurewebsites.net/GetStore/",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
       )
       .then((res) => {
         try {

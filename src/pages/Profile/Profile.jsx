@@ -5,8 +5,14 @@ import axios from "axios";
 const Profile = () => {
   const [formValues, setFormValues] = useState({});
   const [profileInformation, setProfileInformation] = useState({});
+  //localStorage
+  const accessToken = localStorage.getItem("accessToken");
   useEffect(() => {
-    axios("http://localhost:3000/profile").then((res) => {
+    axios("http://localhost:3000/profile", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((res) => {
       setProfileInformation(res.data);
     });
   }, []);
